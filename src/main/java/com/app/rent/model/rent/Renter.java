@@ -9,21 +9,21 @@ import java.util.Set;
 
 public abstract class Renter implements IRent{
     protected int id;
-    protected String addréssy;
+    protected String address;
     protected String phone;
     protected String email;
     protected Set<Property> properties;
 
     public Renter(int id, String address, String phone, String email) {
         this.id = id;
-        this.addréssy = address;
+        this.address = address;
         this.phone = phone;
         this.email = email;
         this.properties = new HashSet<>();
     }
 
     public int getId() { return id; }
-    public String getAddréssy() { return addréssy; }
+    public String getAddress() { return address; }
     public String getPhone() { return phone; }
     public String getEmail() { return email; }
     public Set<Property> getProperties() { return properties; }
