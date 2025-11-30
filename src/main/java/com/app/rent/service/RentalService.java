@@ -1,5 +1,7 @@
 package com.app.rent.service;
 
+import com.app.rent.exception.NotAvailableException;
+import com.app.rent.exception.NotFoundException;
 import com.app.rent.model.good.IProperty;
 import com.app.rent.model.good.PropertyStatus;
 import com.app.rent.model.rent.IRent;
@@ -27,12 +29,12 @@ public class RentalService {
         var actualRenter = renterRepo.findById(renterId);
         if (actualProperty == null) {
             logger.warn("Property "+property.getName()+" not found");
-            return false;
+            throw new NotFoundException("property : " + property.getName());
         }
 
         if (actualProperty.getStatus() != PropertyStatus.AVAILABLE) {
             logger.warn("Property "+property.getName()+" not available");
-            return false;
+            throw new NotAvailableException("Property : " + property.getName()+" already in rent");
         }
         actualRenter.rent(actualProperty);
         actualProperty.setStatus(PropertyStatus.RENTED);
