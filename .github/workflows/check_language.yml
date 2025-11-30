@@ -21,3 +21,5 @@ jobs:
 
       - name: Run Checkstyle
         run: mvn verify
+      - name : Run ASCII checker
+        run : mvn checkerstyle:check
